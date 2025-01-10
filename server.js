@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require('path');
 const cors = require("cors");
-const { openai, systemMessage } = require('./config/openai');
+//const { openai, systemMessage } = require('./config/openai');
 const helmet = require('helmet');
 const app = express();
 
