@@ -71,22 +71,27 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!address) return;
 
         try {
-            const response = await fetch(`/api/dex-status/${address}`);
+            const response = await fetch(`https://api.dexscreener.com/orders/v1/solana/${address}`);
             const data = await response.json();
 
             const statusElement = document.getElementById('pairStatus');
-            
-            if (data.isPaid) {
-                statusElement.innerHTML = `${data.status}<br><span class="status-message">${data.message}</span>`;
-                statusElement.className = 'value safe';
-            } else {
-                statusElement.innerHTML = `${data.status}<br><span class="status-message">${data.message}</span>`;
-                statusElement.className = 'value danger';
+
+            if (data && Array.isArray(data)) {
+                for (const item of data) {
+                    if (item.type === "tokenProfile" && item.status === "approved") {
+                        statusElement.innerHTML = `✅ Dex Payment Confirmed!<br><span class="status-message">Payment for enhanced token information services has been verified</span>`;
+                        statusElement.className = 'value safe';
+                        return;
+                    }
+                }
             }
+
+            statusElement.innerHTML = `❌ Dex Payment Not Found!<br><span class="status-message">No payment detected for enhanced token information services</span>`;
+            statusElement.className = 'value danger';
 
         } catch (error) {
             const statusElement = document.getElementById('pairStatus');
-            statusElement.textContent = '❌ Error checking DEX status';
+            statusElement.innerHTML = `❌ Error<br><span class="status-message">Failed to check DEX status</span>`;
             statusElement.className = 'value danger';
         }
     }
