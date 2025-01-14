@@ -44,4 +44,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1000);
         }, 2000);
     }
+
+    // Add this to your existing modal.js
+    document.querySelector('.modal-deploy-btn').addEventListener('click', function() {
+        this.textContent = 'AI TRADING ACTIVE';
+        this.style.background = 'rgba(0, 255, 0, 0.2)';
+        this.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.4)';
+        
+        // Add pulsing animation
+        this.style.animation = 'pulse 2s infinite';
+        
+        // Show activation message
+        const modalContent = document.querySelector('.modal-content');
+        const statusMsg = document.createElement('div');
+        statusMsg.className = 'activation-status';
+        statusMsg.innerHTML = `
+            <div class="status-line">Neural Network Initialized</div>
+            <div class="status-line">Pattern Recognition Active</div>
+            <div class="status-line">Market Analysis Running</div>
+        `;
+        modalContent.appendChild(statusMsg);
+    });
 }); 
