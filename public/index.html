@@ -25,10 +25,15 @@
 			<span class="version">VERSION 0.0.1</span>
 		</div>
 		<nav class="main-nav">
-			<a href="https://pump.fun" target="_blank">PUMP.FUN</a>
-			<a href="https://twitter.com" target="_blank">X</a>
-			<a href="https://t.me" target="_blank">TELEGRAM</a>
-			<a href="#pump">DEX</a>
+			<a href="https://pump.fun" target="_blank">
+				<img src="pump.PNG" alt="PUMP.FUN" class="nav-icon">
+			</a>
+			<a href="https://twitter.com" target="_blank">
+				<img src="X.PNG" alt="X" class="nav-icon">
+			</a>
+			<a href="https://t.me" target="_blank">
+				<img src="Telegram.PNG" alt="TELEGRAM" class="nav-icon">
+			</a>
 		</nav>
 		<button class="protocol-btn">TRADING MATRIX</button>
 
@@ -116,18 +121,18 @@
 					<img src="/pat.gif" alt="Monitor Status" class="monitor-status">
 				</div>
 
-				<div class="performance-metrics">
-					<div class="metric-row">
-						<span>24H TRADES:</span>
-						<span id="totalTrades" class="value">0</span>
+				<div class="dex-pair-checker">
+					<div class="pair-input">
+						<input type="text" id="pairAddress" placeholder="Enter Token Address">
+						<button id="checkPairBtn">CHECK DEX STATUS</button>
 					</div>
-					<div class="metric-row">
-						<span>SUCCESS RATE:</span>
-						<span id="successRate" class="value">0%</span>
-					</div>
-					<div class="metric-row">
-						<span>PROFIT/LOSS:</span>
-						<span id="profitLoss" class="value">$0</span>
+					<div class="pair-results">
+						<div class="result-grid">
+							<div class="result-item">
+								<span class="label">DEX STATUS</span>
+								<span class="value" id="pairStatus">-</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

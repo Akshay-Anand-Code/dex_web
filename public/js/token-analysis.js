@@ -65,4 +65,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    async function checkDexStatus() {
+        const address = document.getElementById('pairAddress').value;
+        if (!address) return;
+
+        try {
+            const response = await fetch(`/api/dex-status/${address}`);
+            const data = await response.json();
+
+            const statusElement = document.getElementById('pairStatus');
+            
+            if (data.isPaid) {
+                statusElement.innerHTML = `${data.status}<br><span class="status-message">${data.message}</span>`;
+                statusElement.className = 'value safe';
+            } else {
+                statusElement.innerHTML = `${data.status}<br><span class="status-message">${data.message}</span>`;
+                statusElement.className = 'value danger';
+            }
+
+        } catch (error) {
+            const statusElement = document.getElementById('pairStatus');
+            statusElement.textContent = '❌ Error checking DEX status';
+            statusElement.className = 'value danger';
+        }
+    }
+
+    document.getElementById('checkPairBtn').addEventListener('click', checkDexStatus);
 }); 

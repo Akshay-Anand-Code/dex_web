@@ -4,6 +4,7 @@ const path = require('path');
 const cors = require("cors");
 //const { openai, systemMessage } = require('./config/openai');
 const helmet = require('helmet');
+const axios = require('axios');
 const app = express();
 
 require('dotenv').config();
@@ -88,6 +89,39 @@ app.post('/api/chat', async (req, res) => {
 app.post('/api/test', (req, res) => {
     console.log('Test endpoint hit:', req.body);
     res.json({ message: 'Test endpoint working' });
+});
+
+app.get('/api/dex-status/:address', async (req, res) => {
+    try {
+        const response = await axios.get(`https://api.dexscreener.com/orders/v1/solana/${req.params.address}`);
+        
+        // Check if data exists and iterate through items
+        if (response.data && Array.isArray(response.data)) {
+            for (const item of response.data) {
+                if (item.type === "tokenProfile" && item.status === "approved") {
+                    return res.json({
+                        status: "✅ Dex Payment Confirmed!",
+                        message: "Payment for enhanced token information services has been verified for the contract address",
+                        isPaid: true
+                    });
+                }
+            }
+        }
+        
+        // If no approved tokenProfile found
+        res.json({
+            status: "❌ Dex Payment Not Found!",
+            message: "No payment detected for enhanced token information services for the contract address",
+            isPaid: false
+        });
+
+    } catch (error) {
+        res.json({
+            status: "❌ Error",
+            message: `Failed to fetch data: ${error.message}`,
+            isPaid: false
+        });
+    }
 });
 
 // Use port 3000 for development

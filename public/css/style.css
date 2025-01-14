@@ -47,12 +47,45 @@ body {
     margin-left: 10px;
 }
 
-.main-nav a {
-    color: var(--accent-green);
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 12px;
-    letter-spacing: 1px;
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-icon {
+    height: 32px;
+    width: auto;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 3px rgba(0, 255, 0, 0.3));
+}
+
+.nav-icon:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    filter: 
+        drop-shadow(0 0 5px var(--accent-green))
+        drop-shadow(0 0 8px var(--accent-green))
+        brightness(1.2);
+    cursor: pointer;
+    animation: shine 1.5s ease-in-out infinite;
+}
+
+/* Add shine animation */
+@keyframes shine {
+    0% {
+        filter: drop-shadow(0 0 5px var(--accent-green)) brightness(1);
+    }
+    50% {
+        filter: 
+            drop-shadow(0 0 8px var(--accent-green))
+            drop-shadow(0 0 12px var(--accent-green))
+            brightness(1.3);
+    }
+    100% {
+        filter: drop-shadow(0 0 5px var(--accent-green)) brightness(1);
+    }
 }
 
 .protocol-btn {
@@ -74,7 +107,7 @@ body {
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: minmax(auto, 600px) auto;
+    grid-template-rows: 600px auto;
     gap: 20px;
     padding: 20px;
 }
@@ -117,13 +150,15 @@ body {
 .sentiment {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+    height: 100%;
+    overflow: hidden;
 }
 
 .geo-mapping {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    max-height: 600px;
-    height: calc(100vh - 200px);
+    height: 100%;
+    overflow: hidden;
 }
 
 .terminal {
@@ -298,12 +333,13 @@ body {
 /* Mining Stats Styles */
 .mining-stats-container {
     padding: 15px;
-    height: auto;
+    height: calc(100% - 50px);
     display: flex;
     flex-direction: column;
     gap: 20px;
     font-family: var(--font-mono);
     color: var(--text-secondary);
+    overflow: auto;
 }
 
 .gpu-list {
@@ -479,7 +515,7 @@ body {
 .monitor-status-container {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 250px;
     overflow: hidden;
     background: rgba(0, 20, 0, 0.3);
     border: 1px solid rgba(0, 255, 0, 0.1);
@@ -1029,4 +1065,125 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Add styles for DEX pair checker */
+.dex-pair-checker {
+    background: rgba(0, 20, 0, 0.3);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.pair-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pair-input input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    color: var(--accent-green);
+    padding: 12px 15px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.pair-input input::placeholder {
+    color: rgba(0, 255, 0, 0.5);
+}
+
+.pair-input button {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.pair-input button:hover {
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+.pair-results .result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 10px 5px;
+}
+
+.pair-results .result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pair-results .label {
+    color: var(--text-secondary);
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.pair-results .value {
+    color: var(--accent-green);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Add status-specific styling */
+.pair-results .value.safe {
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+.pair-results .value.warning {
+    color: #ffff00;
+    text-shadow: 0 0 5px rgba(255, 255, 0, 0.7);
+}
+
+.pair-results .value.danger {
+    color: #ff4444;
+    text-shadow: 0 0 5px rgba(255, 68, 68, 0.7);
+}
+
+.status-message {
+    display: block;
+    font-size: 12px;
+    margin-top: 5px;
+    opacity: 0.8;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+/* Update the result item height to accommodate longer messages */
+.result-item {
+    min-height: 80px;
+    padding: 10px;
+    background: rgba(0, 20, 0, 0.3);
+    border: 1px solid var(--border-color);
+}
+
+.value.safe {
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+.value.danger {
+    color: #ff4444;
+    text-shadow: 0 0 5px rgba(255, 68, 68, 0.7);
 }
