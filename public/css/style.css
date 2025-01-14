@@ -1187,3 +1187,40 @@ body {
     color: #ff4444;
     text-shadow: 0 0 5px rgba(255, 68, 68, 0.7);
 }
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 20, 0, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+    border: 1px solid var(--accent-green);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 255, 0, 0.3) rgba(0, 20, 0, 0.3);
+}
+
+/* Optional: Hide scrollbar when not hovering */
+.mining-stats-container, .sniper-log {
+    scrollbar-gutter: stable;
+    &:not(:hover)::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-color: transparent;
+    }
+}
