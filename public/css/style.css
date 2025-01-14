@@ -1224,3 +1224,89 @@ body {
         border-color: transparent;
     }
 }
+
+/* Add media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;  /* Single column */
+        grid-template-rows: auto;    /* Auto height rows */
+        gap: 15px;
+        padding: 10px;
+    }
+
+    /* Adjust panel positions */
+    .sentiment {
+        grid-column: 1;
+        grid-row: 1;
+        height: 600px;  /* Fixed height or can be auto */
+    }
+
+    .geo-mapping {
+        grid-column: 1;
+        grid-row: 2;
+        height: 600px;
+    }
+
+    .terminal {
+        grid-column: 1;
+        grid-row: 3;
+        height: 400px;  /* Shorter height for mobile */
+    }
+
+    /* Adjust header for mobile */
+    .main-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .main-nav {
+        justify-content: center;
+    }
+
+    /* Adjust token analysis grid */
+    .result-grid {
+        grid-template-columns: 1fr !important;  /* Force single column */
+    }
+
+    /* Make inputs and buttons more touch-friendly */
+    .token-input input,
+    .pair-input input,
+    .token-input button,
+    .pair-input button {
+        padding: 15px !important;
+        font-size: 16px !important;
+    }
+
+    /* Adjust overlay stats position */
+    .overlay-stats {
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        width: auto;
+    }
+}
+
+/* Add media query for very small devices */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .dashboard-grid {
+        gap: 10px;
+        padding: 5px;
+    }
+
+    .nav-icon {
+        height: 24px;  /* Smaller icons */
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .version {
+        font-size: 10px;
+    }
+}
