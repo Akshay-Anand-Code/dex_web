@@ -169,7 +169,6 @@ body {
 /* Panel Headers */
 .panel-header {
     display: flex;
-    justify-content: space-between;
     padding: 15px;
     border-bottom: 1px solid var(--border-color);
     font-size: 12px;
@@ -1309,4 +1308,41 @@ body {
     .version {
         font-size: 10px;
     }
+}
+
+/* Add styles for the panel header content */
+.panel-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.contract-address {
+    color: var(--accent-green);
+    font-size: 14px;
+    letter-spacing: 1px;
+    opacity: 1;
+    font-family: var(--font-mono);
+    margin: 0 auto;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    padding: 0 20px;
+    flex: 1;
+    text-align: center;
+}
+
+/* Adjust other header elements */
+.panel-header-content span:first-child,
+.panel-header-content span:last-child {
+    flex: 0 0 auto;
+}
+
+/* Update existing panel header styles if needed */
+.panel-header {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    letter-spacing: 1px;
 }
